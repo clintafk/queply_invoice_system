@@ -17,6 +17,7 @@ export default function Clients() {
                         to="/invoices"
                     />
                     <SidebarItem Icon={MdGroups} text="Clients" to="/clients" />
+                    <p> Hello World </p>
                 </Sidebar>
             </div>
         </>
