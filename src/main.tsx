@@ -1,33 +1,44 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App from "./App.tsx";
+import Clients from './pages/Clients';
+import Dashboard from './pages/Dashboard';
+import Invoices from './pages/Invoices';
+import Login from './pages/Login';
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"; 
 import "./index.css";
 
-import Invoices from "./pages/Invoices.tsx";
-import Login from "./pages/Login.tsx";
-
+const queryClient = new QueryClient(); 
 const router = createBrowserRouter([
     {
-        path: "/",
-        element: <App />,
+      element: <App/>,
+      children: [
+        {
+          path: "/",
+          element: <Dashboard/>,
+        },
+        {
+          path: "Clients",
+          element: <Clients/>,
+        },
+        {
+          path: "Invoices",
+          element: <Invoices/>,
+        },
+      ],
     },
     {
-        path: "/invoices",
-        element: <Invoices />,
-    },
-    {
-        path: "/login",
-        element: <Login />,
-    },
-    // {
-    //     path: "/clients",
-    //     element: <Clients />,
-    // },
-]);
+      element: <Login/>,
+      path: "/login",
+    }
+  ]);   
 
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
-        <RouterProvider router={router} />
+        <QueryClientProvider client={queryClient}>
+            <RouterProvider router={router} />
+        </QueryClientProvider>
+        
     </StrictMode>,
 );
