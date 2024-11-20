@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import {
     type ChartConfig,
@@ -6,12 +6,27 @@ import {
     ChartTooltip,
     ChartTooltipContent,
 } from "../components/ui/chart";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
-import { MdWarningAmber, MdOutlinePaid, MdOutlineWarningAmber, MdCheck,  MdOutlineGroups } from 'react-icons/md';
+import {
+    MdOutlinePaid,
+    MdOutlineWarningAmber,
+    MdCheck,
+    MdOutlineGroups,
+    MdPerson,
+    MdPeople,
+    MdSettings,
+    MdLogout,
+} from "react-icons/md";
 // react-icons icons
 
 import { Button } from "../components/ui/button";
-
 
 const Dashboard = () => {
     const chartData = [
@@ -32,162 +47,180 @@ const Dashboard = () => {
             color: "#E76E50",
         },
     } satisfies ChartConfig;
-  return (
-    <>
-        <main className="bg-body">
-            <div className="flex justify-between px-10 py-7">
-                <p className="text-xl font-bold">Dashboard</p>
-                <Button className="items-center gap-2 rounded bg-teal-500 hover:bg-teal-600">
-                    Add new
-                    <IoIosArrowDown />
-                </Button>
-            </div>
-            <div className="flex flex-col gap-7">
-                <div className="flex flex-row gap-6">
-                    <div className="w-1/2 rounded border border-gray-border bg-white">
-                        <div className="flex justify-between border-b border-b-gray-border px-5 py-3">
-                            <span>Recent Activity</span>
-                            <a
-                                href="/"
-                                className="font-medium text-teal-500 hover:text-teal-600"
-                            >
-                                View Activity Log
-                            </a>
-                        </div>
-                        <div className="flex justify-start border-b border-b-gray-border px-5 py-3">
-                            <span className="font-medium">
-                                10 minutes ago
-                            </span>
-                            <span> - </span>
-                            <span>
-                                Invoice created for Blueberry energy
-                            </span>
-                        </div>
-                        <div className="flex justify-start border-b border-b-gray-border px-5 py-3">
-                            <span className="font-medium">
-                                10 minutes ago
-                            </span>
-                            <span> - </span>
-                            <span>
-                                Invoice created for Blueberry energy
-                            </span>
-                        </div>
-                        <div className="flex justify-start border-b border-b-gray-border px-5 py-3">
-                            <span className="font-medium">
-                                10 minutes ago
-                            </span>
-                            <span> - </span>
-                            <span>
-                                Invoice created for Blueberry energy
-                            </span>
-                        </div>
-                        <div className="flex justify-start px-5 py-3">
-                            <span className="font-medium">
-                                10 minutes ago
-                            </span>
-                            <span> - </span>
-                            <span>
-                                Invoice created for Blueberry energy
-                            </span>
-                        </div>
+    return (
+        <>
+            <main className="bg-body">
+                <div className="flex flex-col gap-5 px-10 py-10">
+                    <div className="flex justify-between">
+                        <span className="text-xl font-bold">Dashboard</span>
+                        <DropdownMenu>
+                            <DropdownMenuTrigger className="flex flex-row items-center gap-2">
+                                <Button className="items-center gap-2 rounded bg-teal-500 hover:bg-teal-600">
+                                    Add new
+                                    <IoIosArrowDown />
+                                </Button>
+                            </DropdownMenuTrigger>
+
+                            <DropdownMenuContent className="mb-1 mt-1">
+                                <DropdownMenuLabel className="flex flex-row items-center gap-2 rounded">
+                                    Invoice
+                                </DropdownMenuLabel>
+                                <DropdownMenuLabel className="flex flex-row items-center gap-2 rounded">
+                                    Client
+                                </DropdownMenuLabel>
+                                <DropdownMenuLabel className="flex flex-row items-center gap-2 rounded">
+                                    User
+                                </DropdownMenuLabel>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
                     </div>
-                    <div className="w-1/2 rounded border border-gray-border bg-white">
-                        <div className="flex justify-between border-b border-b-gray-border px-5 py-3">
-                            <span>At a glance</span>
-                        </div>
-                        <div className="flex justify-between border-b border-b-gray-border border-t-gray-border-2 px-5 py-3">
-                            <div className="flex items-center gap-10px">
-                                <MdOutlinePaid className="h-6 w-6" />
-                                <span className="font-medium">
-                                    Total Outstanding:
-                                </span>
+                    <div className="flex flex-col gap-10px">
+                        <div className="flex flex-row gap-6">
+                            <div className="w-1/2 rounded-sm border border-gray-border bg-white">
+                                <div className="flex justify-between border-b border-b-gray-border px-5 py-3">
+                                    <span>Recent Activity</span>
+                                    <a
+                                        href="/"
+                                        className="font-medium text-teal-500 hover:text-teal-600"
+                                    >
+                                        View Activity Log
+                                    </a>
+                                </div>
+                                <div className="flex justify-start border-b border-b-gray-border px-5 py-3">
+                                    <span className="font-medium">
+                                        10 minutes ago
+                                    </span>
+                                    <span> - </span>
+                                    <span>
+                                        Invoice created for Blueberry energy
+                                    </span>
+                                </div>
+                                <div className="flex justify-start border-b border-b-gray-border px-5 py-3">
+                                    <span className="font-medium">
+                                        10 minutes ago
+                                    </span>
+                                    <span> - </span>
+                                    <span>
+                                        Invoice created for Blueberry energy
+                                    </span>
+                                </div>
+                                <div className="flex justify-start border-b border-b-gray-border px-5 py-3">
+                                    <span className="font-medium">
+                                        10 minutes ago
+                                    </span>
+                                    <span> - </span>
+                                    <span>
+                                        Invoice created for Blueberry energy
+                                    </span>
+                                </div>
+                                <div className="flex justify-start px-5 py-3">
+                                    <span className="font-medium">
+                                        10 minutes ago
+                                    </span>
+                                    <span> - </span>
+                                    <span>
+                                        Invoice created for Blueberry energy
+                                    </span>
+                                </div>
                             </div>
-                            <span>1,920.00 USD</span>
-                        </div>
-                        <div className="flex justify-between border-b border-b-gray-border border-t-gray-border-2 px-5 py-3">
-                            <div className="flex items-center gap-10px">
-                                <MdOutlineWarningAmber className="h-6 w-6" />
-                                <span className="font-medium">
-                                    Total Overdue:
-                                </span>
+                            <div className="w-1/2 rounded-sm border border-gray-border bg-white">
+                                <div className="flex justify-between border-b border-b-gray-border px-5 py-3">
+                                    <span>At a glance</span>
+                                </div>
+                                <div className="flex justify-between border-b border-b-gray-border border-t-gray-border-2 px-5 py-3">
+                                    <div className="flex items-center gap-10px">
+                                        <MdOutlinePaid className="h-6 w-6" />
+                                        <span className="font-medium">
+                                            Total Outstanding:
+                                        </span>
+                                    </div>
+                                    <span>1,920.00 USD</span>
+                                </div>
+                                <div className="flex justify-between border-b border-b-gray-border border-t-gray-border-2 px-5 py-3">
+                                    <div className="flex items-center gap-10px">
+                                        <MdOutlineWarningAmber className="h-6 w-6" />
+                                        <span className="font-medium">
+                                            Total Overdue:
+                                        </span>
+                                    </div>
+                                    <span>1,920.00 USD</span>
+                                </div>
+                                <div className="flex justify-between border-b border-b-gray-border border-t-gray-border-2 px-5 py-3">
+                                    <div className="flex items-center gap-10px">
+                                        <MdCheck className="h-6 w-6" />
+                                        <span className="font-medium">
+                                            Total Collected this year:
+                                        </span>
+                                    </div>
+                                    <span>1,920.00 USD</span>
+                                </div>
+                                <div className="flex justify-between px-5 py-3">
+                                    <div className="flex items-center gap-10px">
+                                        <MdOutlineGroups className="h-6 w-6" />
+                                        <span className="font-medium">
+                                            Clients:
+                                        </span>
+                                    </div>
+                                    <span>1,920.00 USD</span>
+                                </div>
                             </div>
-                            <span>1,920.00 USD</span>
                         </div>
-                        <div className="flex justify-between border-b border-b-gray-border border-t-gray-border-2 px-5 py-3">
-                            <div className="flex items-center gap-10px">
-                                <MdCheck className="h-6 w-6" />
-                                <span className="font-medium">
-                                    Total Collected this year:
-                                </span>
+                        <div className="flex flex-col">
+                            <div className="flex-col gap-5 rounded-sm border border-gray-border bg-white">
+                                <div className="px-5 py-4">
+                                    <span>
+                                        Invoice / Received (May 01 2024 - Aug 27
+                                        2024)
+                                    </span>
+                                </div>
+                                <div className="h-full w-full">
+                                    <ChartContainer
+                                        config={chartConfig}
+                                        className="h-96 w-full"
+                                    >
+                                        <BarChart
+                                            accessibilityLayer
+                                            data={chartData}
+                                        >
+                                            <CartesianGrid
+                                                className="px-10"
+                                                vertical={false}
+                                            />
+                                            <XAxis
+                                                dataKey="month"
+                                                tickLine={false}
+                                                tickMargin={10}
+                                                axisLine={false}
+                                                tickFormatter={(value) =>
+                                                    value.slice(0, 3)
+                                                }
+                                            />
+                                            <ChartTooltip
+                                                content={
+                                                    <ChartTooltipContent />
+                                                }
+                                            />
+                                            <Bar
+                                                dataKey="desktop"
+                                                fill="var(--color-desktop)"
+                                                radius={12}
+                                            />
+                                            <Bar
+                                                dataKey="mobile"
+                                                fill="var(--color-mobile)"
+                                                radius={12}
+                                            />
+                                        </BarChart>
+                                    </ChartContainer>
+                                </div>
                             </div>
-                            <span>1,920.00 USD</span>
-                        </div>
-                        <div className="flex justify-between px-5 py-3">
-                            <div className="flex items-center gap-10px">
-                                <MdOutlineGroups className="h-6 w-6" />
-                                <span className="font-medium">
-                                    Clients:
-                                </span>
-                            </div>
-                            <span>1,920.00 USD</span>
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col">
-                    <div className="flex-col gap-5 rounded-xl bg-white">
-                        <div className="px-5 py-4">
-                            <span>
-                                Invoice / Received (May 01 2024 -
-                                Aug 27 2024)
-                            </span>
-                        </div>
-                        <div className="h-full w-full">
-                            <ChartContainer
-                                config={chartConfig}
-                                className="h-96 w-full"
-                            >
-                                <BarChart
-                                    accessibilityLayer
-                                    data={chartData}
-                                >
-                                    <CartesianGrid
-                                        className="px-10"
-                                        vertical={false}
-                                    />
-                                    <XAxis
-                                        dataKey="month"
-                                        tickLine={false}
-                                        tickMargin={10}
-                                        axisLine={false}
-                                        tickFormatter={(value) =>
-                                            value.slice(0, 3)
-                                        }
-                                    />
-                                    <ChartTooltip
-                                        content={
-                                            <ChartTooltipContent />
-                                        }
-                                    />
-                                    <Bar
-                                        dataKey="desktop"
-                                        fill="var(--color-desktop)"
-                                        radius={12}
-                                    />
-                                    <Bar
-                                        dataKey="mobile"
-                                        fill="var(--color-mobile)"
-                                        radius={12}
-                                    />
-                                </BarChart>
-                            </ChartContainer>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </>
+            </main>
+        </>
+    );
+};
 
-    )
-}
+export default Dashboard;
 
-export default Dashboard
