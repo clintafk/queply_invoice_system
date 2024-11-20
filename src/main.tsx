@@ -8,6 +8,7 @@ import Invoices from './pages/Invoices';
 import Login from './pages/Login';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"; 
 import "./index.css";
+import NewClient from "./pages/NewClient";
 
 const queryClient = new QueryClient(); 
 const router = createBrowserRouter([
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
           path: "Invoices",
           element: <Invoices/>,
         },
+        {
+          path: "/new_client",
+          element: <NewClient />,
+      },
       ],
     },
     {

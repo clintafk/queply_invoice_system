@@ -6,6 +6,7 @@ export default {
         extend: {
             width: {
                 "custom-420": "26.25rem",
+                "custom-724": "724px",
             },
             height: {
                 "custom-595": "37.188rem",

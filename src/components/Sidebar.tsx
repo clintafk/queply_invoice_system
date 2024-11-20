@@ -4,8 +4,8 @@ import { NavLink } from "react-router-dom";
 
 export default function Sidebar({ children }: { children: React.ReactNode }) {
     return (
-        <aside className="h-screen w-[246px]">
-            <div className="flex h-full w-[246px] flex-col gap-12 bg-teal-600">
+        <aside className="h-full w-[246px]">
+            <div className="flex h-screen w-[246px] flex-col gap-12 bg-teal-600">
                 <header className="flex items-center justify-center bg-teal-800 py-2">
                     <NavLink to="/">
                         <img
