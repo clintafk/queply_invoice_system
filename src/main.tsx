@@ -6,6 +6,7 @@ import "./index.css";
 
 import Invoices from "./pages/Invoices.tsx";
 import Login from "./pages/Login.tsx";
+import NewClient from "./pages/NewClient.tsx";
 
 const router = createBrowserRouter([
     {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
     {
         path: "/login",
         element: <Login />,
+    },
+    {
+        path: "/new_client",
+        element: <NewClient />,
     },
     // {
     //     path: "/clients",
