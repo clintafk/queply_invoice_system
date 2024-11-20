@@ -1,5 +1,6 @@
 import Sidebar from "@/components/Sidebar";
 import SidebarItem from "@/components/SidebarItem";
+import { Button } from "@/components/ui/button";
 
 import {
     Breadcrumb,
@@ -173,8 +174,8 @@ function NewClient() {
                                     />
                                 </div>
                             </div>
-                            <div className="flex gap-5">
-                                <div className="flex w-1/2 flex-col gap-1">
+                            <div>
+                                <div className="flex w-full flex-col gap-1">
                                     <label htmlFor="">Address</label>
                                     <input
                                         className="rounded-sm border border-gray-border bg-white px-2 py-2"
@@ -183,6 +184,11 @@ function NewClient() {
                                     />
                                 </div>
                             </div>
+                        </div>
+                        <div className="flex justify-end bg-body px-8 py-4">
+                            <Button className="rounded-sm bg-teal-500 px-6 py-3 hover:bg-teal-600">
+                                Create Client
+                            </Button>
                         </div>
                     </div>
                 </main>
