@@ -23,6 +23,7 @@ export default {
                 "teal-stop": "#0FCDBA",
             },
             backgroundColor: {
+                header: "#fff",
                 body: "#F9F9F9",
             },
             borderRadius: {

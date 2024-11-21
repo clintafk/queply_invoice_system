@@ -15,7 +15,7 @@ import { IoIosArrowDown } from "react-icons/io";
 
 export const Header = () => {
     return (
-        <header className="flex flex-row justify-between rounded-sm border-b px-10 py-7">
+        <header className="flex flex-row justify-between rounded-sm bg-header border-b px-10 py-7">
             <span className="text-sm font-light">Queply Innovations</span>
             <div className="flex cursor-pointer flex-row items-center gap-2 text-sm font-light hover:text-teal-500">
                 <DropdownMenu>
