@@ -20,6 +20,7 @@ export default {
                 "teal-800": "#007679",
                 "gray-border": "#E2E8F0",
                 "gray-border-2": "#F9F9F9",
+                "gray-border-3": "#94A3B8",
                 "teal-stop": "#0FCDBA",
             },
             backgroundColor: {
