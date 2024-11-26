@@ -1,8 +1,9 @@
 "use client"
-import React from "react"
+import React, { useState } from "react"
 import {
   ColumnDef,
   ColumnFiltersState,
+  PaginationState,
   flexRender,
   SortingState,
   getCoreRowModel,
@@ -28,21 +29,29 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { IoIosArrowBack, IoIosArrowDown, IoIosArrowDropleft } from "react-icons/io";
+import { IoIosArrowBack, IoIosArrowDown, IoIosArrowDropleft, IoIosArrowForward } from "react-icons/io";
+import { MdSearch } from "react-icons/md";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
 }
 
-export function DataTable<TData, TValue>({
+export function ClientDataTable<TData, TValue>({
   columns,
   data,
+  
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   )
+  const [pagination, setPagination] = React.useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 10,
+  })
+  const [archived, setArchived] = useState(false)
   const table = useReactTable({
     data,
     columns,
@@ -52,9 +61,11 @@ export function DataTable<TData, TValue>({
     getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
+    onPaginationChange: setPagination,
     state: {
       sorting,
       columnFilters,
+      pagination,
     },
   })
 
@@ -62,16 +73,22 @@ export function DataTable<TData, TValue>({
     <div>
       <div className="flex items-center py-4 justify-between">
         <Input
-          placeholder="Filter emails..."
+          placeholder="Search Emails"
           value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("email")?.setFilterValue(event.target.value)
           }
           className="max-w-[276px] rounded-[6px]"
         />
+        <Tabs defaultValue="All">
+          <TabsList className="w-[230px] h-9 rounded-[6px] text-sm border-gray-border border-solid border-[1px] p-1 flex flex-row">
+            <TabsTrigger className="w-full rounded-[6px] border-solid" value="Archived" onChange={(event) => setArchived(true)}>Archived</TabsTrigger>
+            <TabsTrigger className="w-full rounded-[6px] border-solid" value="All" onChange={(event) => setArchived(false)}>All</TabsTrigger>
+          </TabsList>
+        </Tabs>
       </div>
       <div className="rounded-[6px] border-2 border-gray-border border-solid">
-        <Table>
+        <Table> 
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
@@ -115,7 +132,7 @@ export function DataTable<TData, TValue>({
         </Table>
       </div>
       <div className="flex flex-row justify-between">
-        <div className="flex items-center justify-start space-x-2 py-4 gap-[5px]">
+        <div className="flex items-center justify-start py-4 gap-[5px]">
           <Button
             className="px-4 py-3 gap-[10px] items-center border-solid border-[1px] rounded-[6px] border-gray-border-3 bg-gray-border-2 text-black text-sm font-normal hover:bg-gray-border"
             variant="outline"
@@ -127,6 +144,42 @@ export function DataTable<TData, TValue>({
             Previous
 
           </Button>
+          <Button 
+            className="w-10 px-4 py-3 gap-[10px] items-center border-solid border-[1px] rounded-[6px] border-gray-border-3 bg-gray-border-2 text-black text-sm font-normal hover:bg-gray-border"
+            variant="outline"
+            size="sm"
+            onClick={() => table.setPageIndex(table.getState().pagination.pageIndex)}
+            disabled={(table.getState().pagination.pageIndex + 1) > table.getPageCount()}
+            > 
+            {table.getState().pagination.pageIndex + 1}
+          </Button>
+          <Button 
+            className="w-10 px-4 py-3 gap-[10px] items-center border-solid border-[1px] rounded-[6px] border-gray-border-3 bg-gray-border-2 text-black text-sm font-normal hover:bg-gray-border"
+            variant="outline"
+            size="sm"
+            onClick={() => table.setPageIndex(table.getState().pagination.pageIndex + 1)}
+            disabled={(table.getState().pagination.pageIndex + 2) > table.getPageCount()}
+            > 
+            {table.getState().pagination.pageIndex + 2}
+          </Button>
+          <Button 
+            className="w-10 px-4 py-3 gap-[10px] items-center border-solid border-[1px] rounded-[6px] border-gray-border-3 bg-gray-border-2 text-black text-sm font-normal hover:bg-gray-border"
+            variant="outline"
+            size="sm"
+            onClick={() => table.setPageIndex(table.getState().pagination.pageIndex + 2)}
+            disabled={(table.getState().pagination.pageIndex + 3) > table.getPageCount()}
+            > 
+            {table.getState().pagination.pageIndex + 3}
+          </Button>
+          <Button 
+            className="w-10 px-4 py-3 gap-[10px] items-center border-solid border-[1px] rounded-[6px] border-gray-border-3 bg-gray-border-2 text-black text-sm font-normal hover:bg-gray-border"
+            variant="outline"
+            size="sm"
+            onClick={() => table.setPageIndex(table.getState().pagination.pageIndex + 3)}
+            disabled={(table.getState().pagination.pageIndex + 4) > table.getPageCount()}
+            > 
+            {table.getState().pagination.pageIndex + 4}
+          </Button>
           <Button
             className="px-4 py-3 gap-[10px] items-center border-solid border-[1px] rounded-[6px] border-gray-border-3 bg-gray-border-2 text-black text-sm font-normal hover:bg-gray-border"
             variant="outline"
@@ -135,6 +188,7 @@ export function DataTable<TData, TValue>({
             disabled={!table.getCanNextPage()}
           >
             Next
+            <IoIosArrowForward />
           </Button>
         </div>
         <div className="flex flex-row gap-[10px] text-sm items-center ">

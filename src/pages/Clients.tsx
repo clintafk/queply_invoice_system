@@ -1,4 +1,4 @@
-import { DataTable } from "../components/ui/DataTable";
+import { ClientDataTable } from "../components/ui/ClientDataTable";
 import { columns, sample } from "@/tables/Client_Schema";
 import { useState } from "react";
 import {
@@ -40,7 +40,7 @@ export default function Clients() {
             </div>
             <div className="flex flex-col gap-[10px]">
 
-                <DataTable columns={ columns } data={sample}></DataTable>
+                <ClientDataTable columns={ columns } data={sample}></ClientDataTable>
             </div>
             <div className="flex flex-row">
 
