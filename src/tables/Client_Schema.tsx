@@ -23,6 +23,7 @@ const Client_Schema = z.object({
    }).email({message: "Email ok, not random gibberish"}),
 
    contact_number: phone(z.string()),
+   is_Archived: z.boolean(),
 })
 
 type client = z.infer<typeof Client_Schema> 
@@ -61,6 +62,10 @@ export const columns: ColumnDef<client>[] = [
     header: "Contact_Number",
   },
   {
+    accessorKey: "is_Archived",
+    header: "is_Archived",
+  },
+  {
     id: "actions",
     cell: ({ row }) => {
       const clients = row.original
@@ -91,77 +96,90 @@ export const sample: client[] = [
     full_name: "Timothy Robert Mutia",
     email: "test@gmail.com",
     contact_number: "09763828110",
+    is_Archived: true,
   },
   {
     id: 342,
     full_name: "Robert Mutia",
     email: "test@gmail1.com",
     contact_number: "09763828111",
+    is_Archived: true,
   },
   {
     id: 344,
     full_name: "Timothy Robert Mutia",
     email: "test@gmail.com",
     contact_number: "09763828111",
+    is_Archived: true,
   },
   {
     id: 353,
     full_name: "Timothy Robert Mutia",
     email: "test@gmail.com",
     contact_number: "09763828110",
+    is_Archived: false,
   },
   {
     id: 32,
     full_name: "Robert Mutia",
     email: "test@gmail1.com",
     contact_number: "09763828111",
+    is_Archived: true,
   },
   {
     id: 34,
     full_name: "Timothy Robert Mutia",
     email: "test@gmail.com",
     contact_number: "09763828111",
+    is_Archived: true,
   },
   {
     id: 33,
     full_name: "Timothy Robert Mutia",
     email: "test@gmail.com",
     contact_number: "09763828110",
+    is_Archived: true,
   },
   {
     id: 42,
     full_name: "Robert Mutia",
     email: "test@gmail1.com",
     contact_number: "09763828111",
+    is_Archived: true,
   },
   {
     id: 4,
     full_name: "Timothy Robert Mutia",
     email: "test@gmail.com",
     contact_number: "09763828111",
+    is_Archived: true,
   },
   {
     id: 3,
     full_name: "Timothy Robert Mutia",
     email: "test@gmail.com",
     contact_number: "09763828110",
+    is_Archived: true,
   },
   {
     id: 2,
     full_name: "Robert Mutia",
     email: "test@gmail1.com",
     contact_number: "09763828111",
+    is_Archived: true,
   },
   {
     id: 345,
     full_name: "Timothy Robert Mutia",
     email: "test@gmail.com",
     contact_number: "09763828111",
+    is_Archived: true,
   },
   {
     id: 346,
     full_name: "Hi there",
     email: "test@gmail.com",
     contact_number: "09761626364",
+    is_Archived: true,
   }
 ]

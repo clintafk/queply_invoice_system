@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from "react"
 import {
+  VisibilityState,
   ColumnDef,
   ColumnFiltersState,
   PaginationState,
@@ -51,6 +52,8 @@ export function ClientDataTable<TData, TValue>({
     pageIndex: 0,
     pageSize: 10,
   })
+  const [columnVisibility, setColumnVisibility] =
+  React.useState<VisibilityState>({})
   const [archived, setArchived] = useState(false)
   const table = useReactTable({
     data,
@@ -61,11 +64,13 @@ export function ClientDataTable<TData, TValue>({
     getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
+    onColumnVisibilityChange: setColumnVisibility,
     onPaginationChange: setPagination,
     state: {
       sorting,
       columnFilters,
       pagination,
+      columnVisibility,
     },
   })
 
@@ -82,8 +87,12 @@ export function ClientDataTable<TData, TValue>({
         />
         <Tabs defaultValue="All">
           <TabsList className="w-[230px] h-9 rounded-[6px] text-sm border-gray-border border-solid border-[1px] p-1 flex flex-row">
-            <TabsTrigger className="w-full rounded-[6px] border-solid" value="Archived" onChange={(event) => setArchived(true)}>Archived</TabsTrigger>
-            <TabsTrigger className="w-full rounded-[6px] border-solid" value="All" onChange={(event) => setArchived(false)}>All</TabsTrigger>
+            <TabsTrigger className="w-full rounded-[6px] border-solid" value="Archived" onClick={() =>
+            table.getColumn("is_Archived")?.setFilterValue(false)
+          }>Archived</TabsTrigger>
+            <TabsTrigger className="w-full rounded-[6px] border-solid" value="All" onClick={() =>
+            table.getColumn("is_Archived")?.setFilterValue(true)
+          }>All</TabsTrigger>
           </TabsList>
         </Tabs>
       </div>
@@ -193,27 +202,21 @@ export function ClientDataTable<TData, TValue>({
         </div>
         <div className="flex flex-row gap-[10px] text-sm items-center ">
             <p>Number of Results</p>
-            <DropdownMenu>
-                <DropdownMenuTrigger className="flex flex-row items-center gap-[10px]">
-                    <Button className="items-center gap-2 border-solid border-[1px] rounded-[6px] border-gray-border-3 bg-gray-border-2 text-black text-sm font-normal hover:bg-gray-border">
-                        4
-                        <IoIosArrowDown className="fill-slate-400" />
-                    </Button>
-                </DropdownMenuTrigger>
-
-                <DropdownMenuContent className="mb-1 mt-1">
-                    <DropdownMenuLabel className="flex flex-row items-center gap-2 rounded">
-                        1
-                    </DropdownMenuLabel>
-                    <DropdownMenuLabel className="flex flex-row items-center gap-2 rounded">
-                        2
-                    </DropdownMenuLabel>
-                    <DropdownMenuLabel className="flex flex-row items-center gap-2 rounded">
-                        3
-                    </DropdownMenuLabel>
-                </DropdownMenuContent>
-            </DropdownMenu>
-
+            <select
+              value={table.getState().pagination.pageSize}
+              onChange={(e) => {
+                table.setPageSize(Number(e.target.value));
+              }}
+            >
+              {[4,5,6,7,8,9,10].map((pageSize) => (
+                <option 
+                className="flex flex-row items-center gap-[10px]"
+                key={pageSize} 
+                value={pageSize}>
+                  {pageSize}
+                </option>
+              ))}
+            </select>
             <DropdownMenu>
                 <DropdownMenuTrigger className="flex flex-row items-center gap-[10px]">
                     <Button className="items-center gap-2 border-solid border-[1px] rounded-[6px] border-gray-border-3 bg-gray-border-2 text-black text-sm font-normal hover:bg-gray-border">
@@ -224,13 +227,13 @@ export function ClientDataTable<TData, TValue>({
 
                 <DropdownMenuContent className="mb-1 mt-1">
                     <DropdownMenuLabel className="flex flex-row items-center gap-2 rounded">
-                        1
+                        .pdf
                     </DropdownMenuLabel>
                     <DropdownMenuLabel className="flex flex-row items-center gap-2 rounded">
-                        2
+                        .docx
                     </DropdownMenuLabel>
                     <DropdownMenuLabel className="flex flex-row items-center gap-2 rounded">
-                        3
+                        .csv
                     </DropdownMenuLabel>
                 </DropdownMenuContent>
             </DropdownMenu>
