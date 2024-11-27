@@ -10,7 +10,7 @@ import { MoreHorizontal, ArrowUpDown } from "lucide-react";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-const clientSchema = z.object({
+export const clientSchema = z.object({
   id: z.number().int(),
   full_name: z.string({
     required_error: "This is required ok",
