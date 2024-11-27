@@ -202,21 +202,27 @@ export function ClientDataTable<TData, TValue>({
         </div>
         <div className="flex flex-row gap-[10px] text-sm items-center ">
             <p>Number of Results</p>
-            <select
-              value={table.getState().pagination.pageSize}
-              onChange={(e) => {
-                table.setPageSize(Number(e.target.value));
-              }}
-            >
-              {[4,5,6,7,8,9,10].map((pageSize) => (
-                <option 
-                className="flex flex-row items-center gap-[10px]"
-                key={pageSize} 
-                value={pageSize}>
-                  {pageSize}
-                </option>
-              ))}
-            </select>
+            <DropdownMenu>
+                <DropdownMenuTrigger className="flex flex-row items-center gap-[10px]">
+                    <Button className="items-center gap-2 border-solid border-[1px] rounded-[6px] border-gray-border-3 bg-gray-border-2 text-black text-sm font-normal hover:bg-gray-border">
+                        {table.getState().pagination.pageSize}
+                        <IoIosArrowDown className="fill-slate-400" />
+                    </Button>
+                </DropdownMenuTrigger>
+
+                <DropdownMenuContent className="mb-1 mt-1">
+                  {[4,5,6,7,8,9,10].map((pageSize) => (
+                    <DropdownMenuLabel 
+                    className="flex flex-row items-center gap-2 rounded"
+                    key={pageSize}
+                    onClick={() => table.setPageSize(Number(pageSize))}
+                    >
+                      {pageSize}
+                    
+                </DropdownMenuLabel>
+                  ))}
+                </DropdownMenuContent>
+            </DropdownMenu>
             <DropdownMenu>
                 <DropdownMenuTrigger className="flex flex-row items-center gap-[10px]">
                     <Button className="items-center gap-2 border-solid border-[1px] rounded-[6px] border-gray-border-3 bg-gray-border-2 text-black text-sm font-normal hover:bg-gray-border">
