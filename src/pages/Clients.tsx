@@ -38,13 +38,7 @@ export default function Clients() {
                     </DropdownMenuContent>
                 </DropdownMenu>
             </div>
-            <div className="flex flex-col gap-[10px]">
-
-                <ClientDataTable columns={ columns } data={sample}></ClientDataTable>
-            </div>
-            <div className="flex flex-row">
-
-            </div>
+            <ClientDataTable columns={ columns } data={sample}></ClientDataTable>
         </div>
     );
 }
