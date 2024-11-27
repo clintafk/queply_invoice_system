@@ -1,5 +1,5 @@
 import { ClientDataTable } from "../components/ui/ClientDataTable";
-import { columns, sample } from "@/tables/Client_Schema";
+import { columns, sample } from "@/tables/clientSchema";
 import { useState } from "react";
 import {
     DropdownMenu,
