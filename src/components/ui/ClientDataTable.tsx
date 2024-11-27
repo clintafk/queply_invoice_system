@@ -27,12 +27,11 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { IoIosArrowBack, IoIosArrowDown, IoIosArrowDropleft, IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowBack, IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 import { MdSearch } from "react-icons/md";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -52,9 +51,9 @@ export function ClientDataTable<TData, TValue>({
     pageIndex: 0,
     pageSize: 10,
   })
+  const [open, setOpen] = useState(true)
   const [columnVisibility, setColumnVisibility] =
   React.useState<VisibilityState>({})
-  const [archived, setArchived] = useState(false)
   const table = useReactTable({
     data,
     columns,
@@ -210,7 +209,7 @@ export function ClientDataTable<TData, TValue>({
       </div>
       <div className="flex flex-row gap-[10px] text-sm items-center ">
           <p>Number of Results</p>
-          <DropdownMenu>
+          <DropdownMenu open={open} onOpenChange={setOpen}>
               <DropdownMenuTrigger className="flex flex-row items-center gap-[10px]">
                   <Button className="items-center gap-2 border-solid border-[1px] rounded-[6px] border-gray-border-3 bg-gray-border-2 text-black text-sm font-normal hover:bg-gray-border">
                       {table.getState().pagination.pageSize}
@@ -223,7 +222,10 @@ export function ClientDataTable<TData, TValue>({
                   <DropdownMenuLabel 
                   className="flex flex-row items-center gap-2 rounded"
                   key={pageSize}
-                  onClick={() => table.setPageSize(Number(pageSize))}
+                  onClick={() =>{
+                    table.setPageSize(Number(pageSize))
+                    setOpen(false)
+                  }}
                   >
                     {pageSize}
                   
