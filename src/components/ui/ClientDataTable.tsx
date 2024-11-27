@@ -100,11 +100,12 @@ export function ClientDataTable<TData, TValue>({
         <Table> 
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
+              
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
                     <TableHead className="font-semibold text-base text-black 0 px-6 py-4" key={header.id}>
-                      {header.isPlaceholder
+                      {header.isPlaceholder || header.column.columnDef.header === "is_Archived"
                         ? null
                         : flexRender(
                             header.column.columnDef.header,
@@ -117,7 +118,11 @@ export function ClientDataTable<TData, TValue>({
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows?.length ? (
+            {table.getRowModel().rows?.filter((row) => (
+              row.getVisibleCells().map((cell) => (
+                cell.column.columnDef.header === "is_Archived" ? cell.column.toggleVisibility(false) : cell
+              ))
+            )).length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow className="border-t-2"
                   key={row.id}
@@ -125,8 +130,9 @@ export function ClientDataTable<TData, TValue>({
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell className="px-6 py-4" key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
+
                   ))}
                 </TableRow>
               ))
