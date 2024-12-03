@@ -28,9 +28,10 @@ const router = createBrowserRouter([
           element: <Invoices/>,
         },
         {
-          path: "/new_client",
-          element: <NewClient />,
-      },
+          path: "New_Client",
+          element: <NewClient/>,
+        }
+
       ],
     },
     {

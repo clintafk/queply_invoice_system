@@ -1,15 +1,20 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { z } from "zod";
+import { z, } from "zod";
 import { phone } from '@/functions/phone';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { MoreHorizontal, ArrowUpDown } from "lucide-react";
+import { Country, Region, City, } from "react-country-state-city/dist/esm/types";
 
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
+const countryType: z.ZodType<Country> = z.any();
+const regionType: z.ZodType<Region> = z.any();
+const cityType: z.ZodType<City> = z.any();
+
 export const clientSchema = z.object({
   id: z.number().int(),
   full_name: z.string({
@@ -23,7 +28,18 @@ export const clientSchema = z.object({
    }).email({message: "Email ok, not random gibberish"}),
 
    contact_number: phone(z.string()),
+   tax_id: z.string({
+    required_error: "This is required ok",
+    invalid_type_error: "Oi, it a string ok",
+   }),
+   country: countryType,
+   administrative_Area: regionType,
+   locality: cityType,
+   postal_Code: z.number(),
+   throughfare: z.string(),
+   premise: z.number(),
    is_Archived: z.boolean(),
+
 })
 
 type client = z.infer<typeof clientSchema> 
