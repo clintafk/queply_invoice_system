@@ -19,7 +19,7 @@ export default function App() {
                 </Sidebar>
             </div>
 
-            <div className="flex w-full flex-col">
+            <div className="flex w-full h-screen flex-col">
                 <Header />
                 <Outlet />
             </div>

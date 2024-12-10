@@ -48,6 +48,10 @@ const router = createBrowserRouter([
                 path: "/new_invoice2",
                 element: <NewInvoice2 />,
             },
+            {
+                path: "New_Client",
+                element: <NewClient/>,
+            }
         ],
     },
     {
