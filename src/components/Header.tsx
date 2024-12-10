@@ -1,7 +1,6 @@
-import React from "react";
+import { Link } from "react-router-dom";
 import { MdPerson } from "react-icons/md";
-import { MdPeople } from "react-icons/md";
-import { MdSettings } from "react-icons/md";
+import { RxActivityLog } from "react-icons/rx";
 import { MdLogout } from "react-icons/md";
 // ShadCN components
 import {
@@ -13,7 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { IoIosArrowDown } from "react-icons/io";
 
-export const Header = () => {
+export default function Header() {
     return (
         <header className="flex flex-row justify-between rounded-sm border-b px-10 py-7">
             <span className="text-sm font-light">Queply Innovations</span>
@@ -30,17 +29,8 @@ export const Header = () => {
                     <DropdownMenuContent className="mb-1 mt-1">
                         <DropdownMenuLabel className="flex flex-row items-center gap-2 rounded">
                             <MdPerson />
-                            Profile
+                            <Link to="/profile">Profile</Link>
                         </DropdownMenuLabel>
-                        <DropdownMenuLabel className="flex flex-row items-center gap-2 rounded">
-                            <MdPeople />
-                            Manage Users
-                        </DropdownMenuLabel>
-                        <DropdownMenuLabel className="flex flex-row items-center gap-2 rounded">
-                            <MdSettings />
-                            Settings
-                        </DropdownMenuLabel>
-                        <DropdownMenuSeparator />
                         <DropdownMenuLabel className="flex flex-row items-center gap-2 rounded">
                             <MdLogout />
                             Logout
@@ -50,4 +40,4 @@ export const Header = () => {
             </div>
         </header>
     );
-};
+}

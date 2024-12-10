@@ -38,15 +38,15 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MdOutlineReceiptLong } from "react-icons/md";
 import { Input } from "@/components/ui/input";
 
-interface InvoiceDataTableProps<TData, TValue> {
+interface ActivityDataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[];
     data: TData[];
 }
 
-function InvoiceDataTable<TData, TValue>({
+function ActivityDataTable<TData, TValue>({
     columns,
     data,
-}: InvoiceDataTableProps<TData, TValue>) {
+}: ActivityDataTableProps<TData, TValue>) {
     const [sorting, setSorting] = React.useState<SortingState>([]);
     const [columnFilters, setColumnFilters] =
         React.useState<ColumnFiltersState>([]);
@@ -86,64 +86,23 @@ function InvoiceDataTable<TData, TValue>({
                         value={
                             (table
                                 .getColumn("invoice_id")
-                                ?.getFilterValue() as string) ?? ""
+                                ?.getFilterValue() as string) ??
+                            (table
+                                .getColumn("action")
+                                ?.getFilterValue() as string) ??
+                            ""
                         }
                         onChange={(event) =>
                             table
                                 .getColumn("invoice_id")
-                                ?.setFilterValue(event.target.value)
+                                ?.setFilterValue(event.target.value) ??
+                            table
+                                .getColumn("action")
+                                ?.setFilterValue(event.target.value) ??
+                            ""
                         }
                     />
                 </div>
-                <Tabs defaultValue="All">
-                    <TabsList className="flex h-9 w-[701px] flex-row rounded-[6px] border-[1px] border-solid border-gray-border p-1 text-sm">
-                        <TabsTrigger
-                            className="w-full rounded-[6px] border-solid"
-                            value="Archived"
-                            onClick={() =>
-                                table
-                                    .getColumn("is_Archived")
-                                    ?.setFilterValue(true)
-                            }
-                        >
-                            Archived
-                        </TabsTrigger>
-                        <TabsTrigger
-                            className="w-full rounded-[6px] border-solid"
-                            value="All"
-                            onClick={() => table.setColumnFilters([])}
-                        >
-                            All
-                        </TabsTrigger>
-                        <TabsTrigger
-                            className="w-full rounded-[6px] border-solid"
-                            value="Paid"
-                            onClick={() =>
-                                table
-                                    .getColumn("status")
-                                    ?.setFilterValue("Paid")
-                            }
-                        >
-                            Paid
-                        </TabsTrigger>
-                        <TabsTrigger
-                            className="w-full rounded-[6px] border-solid"
-                            value="Unpaid"
-                            onClick={() =>
-                                table.getColumn("status")?.setFilterValue("Due")
-                            }
-                        >
-                            Unpaid
-                        </TabsTrigger>
-                        <TabsTrigger
-                            className="w-full rounded-[6px] border-solid"
-                            value="Overdue"
-                            onClick={() => table.getColumn("is_Archived")}
-                        >
-                            Overdue
-                        </TabsTrigger>
-                    </TabsList>
-                </Tabs>
             </div>
             <div className="rounded-[6px] border-[1px] border-solid border-gray-border">
                 <Table className="rounded-[6px] bg-white">
@@ -350,4 +309,4 @@ function InvoiceDataTable<TData, TValue>({
     );
 }
 
-export default InvoiceDataTable;
+export default ActivityDataTable;

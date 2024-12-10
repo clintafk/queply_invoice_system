@@ -10,8 +10,19 @@ interface SidebarItemProps {
 export default function SidebarItem({ Icon, text, to }: SidebarItemProps) {
     return (
         <li>
-            <NavLink to={to} className="flex flex-row items-center gap-3">
-                {<Icon />}
+            <NavLink
+                to={to}
+                className={({ isActive, isPending }) =>
+                    `flex flex-row items-center gap-3 opacity-50 hover:opacity-100 ${
+                        isPending
+                            ? "pending"
+                            : isActive
+                              ? "active opacity-100"
+                              : ""
+                    }`
+                }
+            >
+                <Icon />
                 <span>{text}</span>
             </NavLink>
         </li>

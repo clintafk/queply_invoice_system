@@ -1,6 +1,17 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { MoreHorizontal, ArrowUpDown } from "lucide-react";
+import { MdOutlineReceiptLong } from "react-icons/md";
+import { MdEdit } from "react-icons/md";
+import { MdOutlineArchive } from "react-icons/md";
 
 export type Invoice = {
     invoice_id: number;
@@ -18,41 +29,14 @@ export type Invoice = {
 
 export type InvoiceTableData = {
     invoice_id: string;
+    employee_id: string;
     status: "Due" | "Overdue" | "Paid";
     client_id: string;
     total_due: number;
     issue_date: string;
     due_date: string;
+    is_Archived: boolean;
 };
-
-export const sample: Invoice[] = [
-    {
-        invoice_id: 1,
-        client_id: 1,
-        user_id: 1,
-        issue_date: new Date("2024-11-22"),
-        due_date: new Date("2024-12-22"),
-        subtotal: 12000,
-        discount: 12000,
-        total_due: 12000,
-        amount_paid: 12000,
-        note: "This is a note",
-        status: "Due",
-    },
-    {
-        invoice_id: 2,
-        client_id: 2,
-        user_id: 2,
-        issue_date: new Date("2025-02-22"),
-        due_date: new Date("2025-03-18"),
-        subtotal: 14000,
-        discount: 10,
-        total_due: 10000,
-        amount_paid: 13000,
-        note: "I am a note",
-        status: "Due",
-    },
-];
 
 export const invoiceTableData: InvoiceTableData[] = [
     {
@@ -62,6 +46,8 @@ export const invoiceTableData: InvoiceTableData[] = [
         total_due: 199.99,
         issue_date: new Date("2024-03-01").toLocaleDateString("en-US"),
         due_date: new Date("2024-03-05").toLocaleDateString("en-US"),
+        is_Archived: true,
+        employee_id: "Clint Harvey Gamolo",
     },
     {
         invoice_id: "INV63",
@@ -70,6 +56,8 @@ export const invoiceTableData: InvoiceTableData[] = [
         total_due: 399.99,
         issue_date: new Date("2024-03-14").toLocaleDateString("en-US"),
         due_date: new Date("2024-03-24").toLocaleDateString("en-US"),
+        is_Archived: false,
+        employee_id: "Timothy Robert Mutia",
     },
     {
         invoice_id: "INV64",
@@ -78,6 +66,8 @@ export const invoiceTableData: InvoiceTableData[] = [
         total_due: 299.99,
         issue_date: new Date("2024-04-01").toLocaleDateString("en-US"),
         due_date: new Date("2024-07-24").toLocaleDateString("en-US"),
+        is_Archived: false,
+        employee_id: "Timothy Robert Mutia",
     },
     {
         invoice_id: "INV65",
@@ -86,154 +76,67 @@ export const invoiceTableData: InvoiceTableData[] = [
         total_due: 599.99,
         issue_date: new Date("2024-04-14").toLocaleDateString("en-US"),
         due_date: new Date("2024-04-30").toLocaleDateString("en-US"),
+        is_Archived: true,
+        employee_id: "Timothy Robert Mutia",
     },
     {
-        invoice_id: "INV62",
+        invoice_id: "INV66",
         status: "Due",
         client_id: "Clarity Growth Inc.",
         total_due: 199.99,
         issue_date: new Date("2024-03-01").toLocaleDateString("en-US"),
         due_date: new Date("2024-03-05").toLocaleDateString("en-US"),
-    },
-    {
-        invoice_id: "INV63",
-        status: "Paid",
-        client_id: "Inovuze",
-        total_due: 399.99,
-        issue_date: new Date("2024-03-14").toLocaleDateString("en-US"),
-        due_date: new Date("2024-03-24").toLocaleDateString("en-US"),
-    },
-    {
-        invoice_id: "INV64",
-        status: "Due",
-        client_id: "Wela Inc.",
-        total_due: 299.99,
-        issue_date: new Date("2024-04-01").toLocaleDateString("en-US"),
-        due_date: new Date("2024-07-24").toLocaleDateString("en-US"),
-    },
-    {
-        invoice_id: "INV65",
-        status: "Paid",
-        client_id: "Netflix Inc.",
-        total_due: 599.99,
-        issue_date: new Date("2024-04-14").toLocaleDateString("en-US"),
-        due_date: new Date("2024-04-30").toLocaleDateString("en-US"),
-    },
-    {
-        invoice_id: "INV62",
-        status: "Due",
-        client_id: "Clarity Growth Inc.",
-        total_due: 199.99,
-        issue_date: new Date("2024-03-01").toLocaleDateString("en-US"),
-        due_date: new Date("2024-03-05").toLocaleDateString("en-US"),
-    },
-    {
-        invoice_id: "INV63",
-        status: "Paid",
-        client_id: "Inovuze",
-        total_due: 399.99,
-        issue_date: new Date("2024-03-14").toLocaleDateString("en-US"),
-        due_date: new Date("2024-03-24").toLocaleDateString("en-US"),
-    },
-    {
-        invoice_id: "INV64",
-        status: "Due",
-        client_id: "Wela Inc.",
-        total_due: 299.99,
-        issue_date: new Date("2024-04-01").toLocaleDateString("en-US"),
-        due_date: new Date("2024-07-24").toLocaleDateString("en-US"),
-    },
-    {
-        invoice_id: "INV65",
-        status: "Paid",
-        client_id: "Netflix Inc.",
-        total_due: 599.99,
-        issue_date: new Date("2024-04-14").toLocaleDateString("en-US"),
-        due_date: new Date("2024-04-30").toLocaleDateString("en-US"),
-    },
-    {
-        invoice_id: "INV62",
-        status: "Due",
-        client_id: "Clarity Growth Inc.",
-        total_due: 199.99,
-        issue_date: new Date("2024-03-01").toLocaleDateString("en-US"),
-        due_date: new Date("2024-03-05").toLocaleDateString("en-US"),
-    },
-    {
-        invoice_id: "INV63",
-        status: "Paid",
-        client_id: "Inovuze",
-        total_due: 399.99,
-        issue_date: new Date("2024-03-14").toLocaleDateString("en-US"),
-        due_date: new Date("2024-03-24").toLocaleDateString("en-US"),
-    },
-    {
-        invoice_id: "INV64",
-        status: "Due",
-        client_id: "Wela Inc.",
-        total_due: 299.99,
-        issue_date: new Date("2024-04-01").toLocaleDateString("en-US"),
-        due_date: new Date("2024-07-24").toLocaleDateString("en-US"),
-    },
-    {
-        invoice_id: "INV65",
-        status: "Paid",
-        client_id: "Netflix Inc.",
-        total_due: 599.99,
-        issue_date: new Date("2024-04-14").toLocaleDateString("en-US"),
-        due_date: new Date("2024-04-30").toLocaleDateString("en-US"),
-    },
-    {
-        invoice_id: "INV62",
-        status: "Due",
-        client_id: "Clarity Growth Inc.",
-        total_due: 199.99,
-        issue_date: new Date("2024-03-01").toLocaleDateString("en-US"),
-        due_date: new Date("2024-03-05").toLocaleDateString("en-US"),
-    },
-    {
-        invoice_id: "INV63",
-        status: "Paid",
-        client_id: "Inovuze",
-        total_due: 399.99,
-        issue_date: new Date("2024-03-14").toLocaleDateString("en-US"),
-        due_date: new Date("2024-03-24").toLocaleDateString("en-US"),
-    },
-    {
-        invoice_id: "INV64",
-        status: "Due",
-        client_id: "Wela Inc.",
-        total_due: 299.99,
-        issue_date: new Date("2024-04-01").toLocaleDateString("en-US"),
-        due_date: new Date("2024-07-24").toLocaleDateString("en-US"),
-    },
-    {
-        invoice_id: "INV65",
-        status: "Paid",
-        client_id: "Netflix Inc.",
-        total_due: 599.99,
-        issue_date: new Date("2024-04-14").toLocaleDateString("en-US"),
-        due_date: new Date("2024-04-30").toLocaleDateString("en-US"),
+        is_Archived: true,
+        employee_id: "Clint Harvey Gamolo",
     },
 ];
 
 export const invoiceTableColumns: ColumnDef<InvoiceTableData>[] = [
     {
         accessorKey: "invoice_id",
-        header: "Invoice ID",
+        header: ({ column }) => {
+            return (
+                <Button
+                    className="p-0 text-[16px] font-semibold"
+                    variant="ghost"
+                    onClick={() =>
+                        column.toggleSorting(column.getIsSorted() === "asc")
+                    }
+                >
+                    Invoice ID
+                    <ArrowUpDown className="ml-2 h-4 w-4" />
+                </Button>
+            );
+        },
     },
     {
         accessorKey: "status",
-        header: "Status",
+        header: () => {
+            return <span className="text-[16px] font-semibold">Status</span>;
+        },
+        // header: ({ column }) => {
+        //     return (
+        //         <Button
+        //             className="p-0"
+        //             variant="ghost"
+        //             onClick={() =>
+        //                 column.toggleSorting(column.getIsSorted() === "asc")
+        //             }
+        //         >
+        //             Status
+        //             <ArrowUpDown className="ml-2 h-4 w-4" />
+        //         </Button>
+        //     );
+        // },
         cell: ({ row }) => {
             const status: string = row.getValue("status");
             return (
                 <span
                     className={`px-12 py-2 text-white ${
                         status === "Paid"
-                            ? "bg-success"
+                            ? "bg-[#4CAF50]"
                             : status === "Due"
-                              ? "bg-warn"
+                              ? "bg-[#F44336]"
                               : "bg-inherit"
                     }`}
                 >
@@ -267,43 +170,33 @@ export const invoiceTableColumns: ColumnDef<InvoiceTableData>[] = [
         accessorKey: "due_date",
         header: "Due date",
     },
-];
-
-export const columns: ColumnDef<Invoice>[] = [
     {
-        accessorKey: "invoice_id",
-        header: "Invoice ID",
+        accessorKey: "is_Archived",
+        header: "is_Archived",
     },
     {
-        accessorKey: "issue_date",
-        header: "Issue Date",
-    },
-    {
-        accessorKey: "due_Date",
-        header: "Due Date",
-    },
-    {
-        accessorKey: "subtotal",
-        header: "Subtotal",
-    },
-    {
-        accessorKey: "discount",
-        header: "Discount",
-    },
-    {
-        accessorKey: "total_due",
-        header: "Total Due",
-    },
-    {
-        accessorKey: "amount_paid",
-        header: "Amount Paid",
-    },
-    {
-        accessorKey: "note",
-        header: "Note",
-    },
-    {
-        accessorKey: "Status",
-        header: "status",
+        id: "actions",
+        cell: ({ row }) => {
+            const clients = row.original;
+            return (
+                <DropdownMenu>
+                    <DropdownMenuTrigger>
+                        <span className="flex h-8 w-8 justify-end p-0">
+                            <MoreHorizontal />
+                        </span>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                        <DropdownMenuItem className="">
+                            <MdEdit />
+                            Edit
+                        </DropdownMenuItem>
+                        <DropdownMenuItem>
+                            <MdOutlineArchive />
+                            Archive
+                        </DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+            );
+        },
     },
 ];

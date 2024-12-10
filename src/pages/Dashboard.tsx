@@ -10,7 +10,6 @@ import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuLabel,
-    DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
@@ -19,16 +18,23 @@ import {
     MdOutlineWarningAmber,
     MdCheck,
     MdOutlineGroups,
-    MdPerson,
-    MdPeople,
-    MdSettings,
-    MdLogout,
 } from "react-icons/md";
-// react-icons icons
-
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from "@/components/ui/popover";
+import { format, addDays } from "date-fns";
+import { Link } from "react-router-dom";
+import { Calendar } from "@/components/ui/calendar";
 import { Button } from "../components/ui/button";
+import { DateRange } from "react-day-picker";
 
 const Dashboard = () => {
+    const [date, setDate] = React.useState<DateRange | undefined>({
+        from: new Date(2023, 0, 20),
+        to: addDays(new Date(2023, 0, 20), 20),
+    });
     const chartData = [
         { month: "January", desktop: 186, mobile: 80 },
         { month: "February", desktop: 100, mobile: 200 },
@@ -52,7 +58,9 @@ const Dashboard = () => {
             <main className="bg-body">
                 <div className="flex flex-col gap-5 px-10 py-10">
                     <div className="flex justify-between">
-                        <span className="text-xl font-bold">Dashboard</span>
+                        <span className="font-sans text-3xl font-bold">
+                            Dashboard
+                        </span>
                         <DropdownMenu>
                             <DropdownMenuTrigger className="flex flex-row items-center gap-2">
                                 <Button className="items-center gap-2 rounded bg-teal-500 hover:bg-teal-600">
@@ -79,12 +87,12 @@ const Dashboard = () => {
                             <div className="w-1/2 rounded-sm border border-gray-border bg-white">
                                 <div className="flex justify-between border-b border-b-gray-border px-5 py-3">
                                     <span>Recent Activity</span>
-                                    <a
-                                        href="/"
+                                    <Link
                                         className="font-medium text-teal-500 hover:text-teal-600"
+                                        to="/activity_log"
                                     >
                                         View Activity Log
-                                    </a>
+                                    </Link>
                                 </div>
                                 <div className="flex justify-start border-b border-b-gray-border px-5 py-3">
                                     <span className="font-medium">
@@ -143,7 +151,7 @@ const Dashboard = () => {
                                             Total Overdue:
                                         </span>
                                     </div>
-                                    <span>1,920.00 USD</span>
+                                    <span>5,000.00 USD</span>
                                 </div>
                                 <div className="flex justify-between border-b border-b-gray-border border-t-gray-border-2 px-5 py-3">
                                     <div className="flex items-center gap-10px">
@@ -152,7 +160,7 @@ const Dashboard = () => {
                                             Total Collected this year:
                                         </span>
                                     </div>
-                                    <span>1,920.00 USD</span>
+                                    <span>10,000.00 USD</span>
                                 </div>
                                 <div className="flex justify-between px-5 py-3">
                                     <div className="flex items-center gap-10px">
@@ -161,17 +169,56 @@ const Dashboard = () => {
                                             Clients:
                                         </span>
                                     </div>
-                                    <span>1,920.00 USD</span>
+                                    <span>10</span>
                                 </div>
                             </div>
                         </div>
                         <div className="flex flex-col">
                             <div className="flex-col gap-5 rounded-sm border border-gray-border bg-white">
                                 <div className="px-5 py-4">
-                                    <span>
-                                        Invoice / Received (May 01 2024 - Aug 27
-                                        2024)
+                                    <span className="hover:bg-red rounded">
+                                        Invoice / Received:{" "}
                                     </span>
+                                    <Popover>
+                                        <PopoverTrigger asChild>
+                                            <span className="font-white cursor-pointer rounded-md bg-teal-500 px-2 py-1 hover:bg-teal-600">
+                                                {date?.from ? (
+                                                    date.to ? (
+                                                        <>
+                                                            {format(
+                                                                date.from,
+                                                                "LLL dd, y",
+                                                            )}{" "}
+                                                            -{" "}
+                                                            {format(
+                                                                date.to,
+                                                                "LLL dd, y",
+                                                            )}
+                                                        </>
+                                                    ) : (
+                                                        format(
+                                                            date.from,
+                                                            "LLL dd, y",
+                                                        )
+                                                    )
+                                                ) : (
+                                                    <span>Pick a date</span>
+                                                )}
+                                            </span>
+                                        </PopoverTrigger>
+                                        <PopoverContent
+                                            className="w-auto p-0"
+                                            align="center"
+                                        >
+                                            <Calendar
+                                                initialFocus
+                                                mode="range"
+                                                selected={date}
+                                                onSelect={setDate}
+                                                numberOfMonths={2}
+                                            />
+                                        </PopoverContent>
+                                    </Popover>
                                 </div>
                                 <div className="h-full w-full">
                                     <ChartContainer
@@ -223,4 +270,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
