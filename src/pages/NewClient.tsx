@@ -1,35 +1,12 @@
-import Sidebar from "@/components/Sidebar";
-import SidebarItem from "@/components/SidebarItem";
-import { Button } from "@/components/ui/button";
-import Add_Client_Form from "@/forms/Add_Client_Form";
+import Add_Client_Form from "../forms/add_client_form";
 
 import {
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
     BreadcrumbList,
-    BreadcrumbPage,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { IoIosArrowDown } from "react-icons/io";
-// react-icons icons
-import {
-    MdDashboard,
-    MdOutlineRequestPage,
-    MdGroups,
-    MdPerson,
-    MdPeople,
-    MdSettings,
-    MdLogout,
-} from "react-icons/md";
 
 export default function NewClient() {
     return (

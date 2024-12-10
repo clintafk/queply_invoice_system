@@ -30,7 +30,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { IoIosArrowBack, IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
-import { MdSearch } from "react-icons/md";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 interface DataTableProps<TData, TValue> {

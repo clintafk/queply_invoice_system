@@ -38,7 +38,7 @@ export default function Login() {
                                     placeholder="***********"
                                 />
                             </div>
-                            <div className="cursor-pointer px-2 text-right text-teal-500 hover:text-teal-600">
+                            <div className="cursor-pointer px-2 text-right text-teal-400 hover:text-teal-600">
                                 <span className="text-sm">Forgot password</span>
                             </div>
                         </div>

@@ -6,13 +6,14 @@ import { phone } from '@/functions/phone';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { MoreHorizontal, ArrowUpDown } from "lucide-react";
-import { Country, Region, City, } from "react-country-state-city/dist/esm/types";
+import { Country, City, State, } from "react-country-state-city/dist/esm/types";
 
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 const countryType: z.ZodType<Country> = z.any();
-const regionType: z.ZodType<Region> = z.any();
+//const regionType: z.ZodType<Region> = z.any();
+const stateType: z.ZodType<State> = z.any();
 const cityType: z.ZodType<City> = z.any();
 
 export const clientSchema = z.object({
@@ -33,7 +34,7 @@ export const clientSchema = z.object({
     invalid_type_error: "Oi, it a string ok",
    }),
    country: countryType,
-   administrative_Area: regionType,
+   administrative_Area: stateType,
    locality: cityType,
    postal_Code: z.number(),
    throughfare: z.string(),
