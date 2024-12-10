@@ -52,13 +52,16 @@ importers:
         version: 1.0.0-beta.3
       libphonenumber-js:
         specifier: ^1.11.15
-        version: 1.11.15
+        version: 1.11.16
       lucide-react:
         specifier: ^0.451.0
         version: 0.451.0(react@18.3.1)
       react:
         specifier: ^18.3.1
         version: 18.3.1
+      react-country-state-city:
+        specifier: ^1.1.7
+        version: 1.1.7(react@18.3.1)
       react-day-picker:
         specifier: 8.10.1
         version: 8.10.1(date-fns@4.1.0)(react@18.3.1)
@@ -74,6 +77,9 @@ importers:
       react-router-dom:
         specifier: ^6.26.2
         version: 6.26.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react-select-country-list:
+        specifier: ^2.2.3
+        version: 2.2.3
       recharts:
         specifier: ^2.13.3
         version: 2.13.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -99,6 +105,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.0
         version: 18.3.0
+      '@types/react-select-country-list':
+        specifier: ^2.2.3
+        version: 2.2.3
       '@vitejs/plugin-react':
         specifier: ^4.3.2
         version: 4.3.2(vite@5.4.8(@types/node@22.7.5))
@@ -933,8 +942,10 @@ packages:
     peerDependencies:
       react: '>=16.8'
       react-dom: '>=16.8'
+
   '@tanstack/store@0.5.5':
     resolution: {integrity: sha512-EOSrgdDAJExbvRZEQ/Xhh9iZchXpMN+ga1Bnk8Nmygzs8TfiE6hbzThF+Pr2G19uHL6+DTDTHhJ8VQiOd7l4tA==}
+
   '@tanstack/table-core@8.20.5':
     resolution: {integrity: sha512-P9dF7XbibHph2PFRz8gfBKEXEY/HJPOhym8CHmjF8y3q5mWpKx9xtZapXQUWCgkqvsK0R46Azuz+VaxD4Xl+Tg==}
     engines: {node: '>=12'}
@@ -943,6 +954,7 @@ packages:
     resolution: {integrity: sha512-6ZvrpIStwC6kEmA9xfx+Nx8l0SMOOlqzQay2bA1AsCH2PDYIYZw8BRrkQ2m0lgTWop+6LtGuholRKdpd3/OawQ==}
     peerDependencies:
       zod: ^3.x
+
   '@tinyhttp/accepts@2.2.3':
     resolution: {integrity: sha512-9pQN6pJAJOU3McmdJWTcyq7LLFW8Lj5q+DadyKcvp+sxMkEpktKX5sbfJgJuOvjk6+1xWl7pe0YL1US1vaO/1w==}
     engines: {node: '>=12.20.0'}
@@ -1072,6 +1084,9 @@ packages:
 
   '@types/react-dom@18.3.0':
     resolution: {integrity: sha512-EhwApuTmMBmXuFOikhQLIBUn6uFg81SwLMOAUgodJF14SOBOCMdU04gDoYi0WOJJHD144TL32z4yDqCW3dnkQg==}
+
+  '@types/react-select-country-list@2.2.3':
+    resolution: {integrity: sha512-nffcYOwuun+5B0EWqubK+amHpPdK9Xj20xkLYNqYrzmESd8FnpLwHsS79ClLAWA9y+icVA8gWPkbwBp1gpjSwA==}
 
   '@types/react@18.3.11':
     resolution: {integrity: sha512-r6QZ069rFTjrEYgFdOck1gK7FLVsgJE7tTz0pQBczlBNUhBNk0MQH4UbnFSwjpQLMkLzgqvBBa+qGpLje16eTQ==}
@@ -1679,8 +1694,8 @@ packages:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
     engines: {node: '>= 0.8.0'}
 
-  libphonenumber-js@1.11.15:
-    resolution: {integrity: sha512-M7+rtYi9l5RvMmHyjyoF3BHHUpXTYdJ0PezZGHNs0GyW1lO+K7jxlXpbdIb7a56h0nqLYdjIw+E+z0ciGaJP7g==}
+  libphonenumber-js@1.11.16:
+    resolution: {integrity: sha512-Noyazmt0yOvnG0OeRY45Cd1ur8G7Z0HWVkuCuKe+yysGNxPQwBAODBQQ40j0AIagi9ZWurfmmZWNlpg4h4W+XQ==}
 
   lilconfig@2.1.0:
     resolution: {integrity: sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ==}
@@ -1955,6 +1970,11 @@ packages:
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
+  react-country-state-city@1.1.7:
+    resolution: {integrity: sha512-Dzwm9/IY8eA94MYP03Dg+6APzmSv5mfIblGca6PZr4nzCCkqspubzvyrqXm277UQCFk/eu21UwqOZbiuU5+rWw==}
+    peerDependencies:
+      react: '>=16'
+
   react-day-picker@8.10.1:
     resolution: {integrity: sha512-TMx7fNbhLk15eqcMt+7Z7S2KF7mfTId/XJDjKE8f+IUcFn0l08/kI4FiYTL/0yuOLmEcbR4Fwe3GJf/NiiMnPA==}
     peerDependencies:
@@ -2019,6 +2039,9 @@ packages:
     engines: {node: '>=14.0.0'}
     peerDependencies:
       react: '>=16.8'
+
+  react-select-country-list@2.2.3:
+    resolution: {integrity: sha512-eRgXL613dVyJiE99yKDYLvSBKDxvIlhkmvO2DVIjdKVyUQq6kBqoMUV/2zuRIAsbRXgBGmKjeL1dxjf7zTfszg==}
 
   react-smooth@4.0.1:
     resolution: {integrity: sha512-OE4hm7XqR0jNOq3Qmk9mFLyd6p2+j6bvbPJ7qlB7+oo0eNcL2l7WQzG6MBnT3EXY6xzkLMUBec3AfewJdA0J8w==}
@@ -3062,7 +3085,7 @@ snapshots:
       '@tanstack/table-core': 8.20.5
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-  '@tanstack/table-core@8.20.5': {}
+
   '@tanstack/store@0.5.5': {}
 
   '@tanstack/table-core@8.20.5': {}
@@ -3071,6 +3094,7 @@ snapshots:
     dependencies:
       '@tanstack/form-core': 0.36.2
       zod: 3.23.8
+
   '@tinyhttp/accepts@2.2.3':
     dependencies:
       mime: 4.0.4
@@ -3209,6 +3233,8 @@ snapshots:
   '@types/react-dom@18.3.0':
     dependencies:
       '@types/react': 18.3.11
+
+  '@types/react-select-country-list@2.2.3': {}
 
   '@types/react@18.3.11':
     dependencies:
@@ -3825,7 +3851,7 @@ snapshots:
       prelude-ls: 1.2.1
       type-check: 0.4.0
 
-  libphonenumber-js@1.11.15: {}
+  libphonenumber-js@1.11.16: {}
 
   lilconfig@2.1.0: {}
 
@@ -4003,6 +4029,10 @@ snapshots:
 
   queue-microtask@1.2.3: {}
 
+  react-country-state-city@1.1.7(react@18.3.1):
+    dependencies:
+      react: 18.3.1
+
   react-day-picker@8.10.1(date-fns@4.1.0)(react@18.3.1):
     dependencies:
       date-fns: 4.1.0
@@ -4058,6 +4088,8 @@ snapshots:
     dependencies:
       '@remix-run/router': 1.19.2
       react: 18.3.1
+
+  react-select-country-list@2.2.3: {}
 
   react-smooth@4.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
