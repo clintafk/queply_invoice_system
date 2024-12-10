@@ -1,5 +1,6 @@
 import React from "react";
 import { IoIosArrowDown } from "react-icons/io";
+import { MdOutlineReceiptLong, MdOutlinePersonAdd } from "react-icons/md";
 import {
     type ChartConfig,
     ChartContainer,
@@ -71,13 +72,12 @@ const Dashboard = () => {
 
                             <DropdownMenuContent className="mb-1 mt-1">
                                 <DropdownMenuLabel className="flex flex-row items-center gap-2 rounded">
+                                    <MdOutlineReceiptLong />
                                     Invoice
                                 </DropdownMenuLabel>
                                 <DropdownMenuLabel className="flex flex-row items-center gap-2 rounded">
+                                    <MdOutlinePersonAdd />
                                     Client
-                                </DropdownMenuLabel>
-                                <DropdownMenuLabel className="flex flex-row items-center gap-2 rounded">
-                                    User
                                 </DropdownMenuLabel>
                             </DropdownMenuContent>
                         </DropdownMenu>
