@@ -6,7 +6,6 @@ export default {
         extend: {
             width: {
                 "custom-420": "26.25rem",
-                "custom-724": "724px",
             },
             height: {
                 "custom-595": "37.188rem",
@@ -15,14 +14,17 @@ export default {
                 "custom-50": "3.125rem",
             },
             colors: {
+                "teal-400": "#40E0EB",
                 "teal-500": "#00ADBA",
                 "teal-600": "#00878F",
                 "teal-800": "#007679",
                 "gray-border": "#E2E8F0",
                 "gray-border-2": "#F9F9F9",
+                "gray-border-3": "#CBD5E1",
                 "teal-stop": "#0FCDBA",
             },
             backgroundColor: {
+                header: "#fff",
                 body: "#F9F9F9",
             },
             borderRadius: {

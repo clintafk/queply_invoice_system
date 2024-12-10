@@ -10,7 +10,7 @@ import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuLabel,
-    DropdownMenuSeparator,
+
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
@@ -19,10 +19,6 @@ import {
     MdOutlineWarningAmber,
     MdCheck,
     MdOutlineGroups,
-    MdPerson,
-    MdPeople,
-    MdSettings,
-    MdLogout,
 } from "react-icons/md";
 // react-icons icons
 
