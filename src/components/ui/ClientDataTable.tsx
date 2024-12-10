@@ -48,7 +48,7 @@ export function ClientDataTable<TData, TValue>({
   )
   const [pagination, setPagination] = React.useState<PaginationState>({
     pageIndex: 0,
-    pageSize: 10,
+    pageSize: 4,
   })
   const [open, setOpen] = useState(true)
   const [columnVisibility, setColumnVisibility] =
