@@ -10,7 +10,6 @@ import {
 
 export default function NewClient() {
     return (
-
             <div className="w-full">
                 <main className="flex flex-col gap-5 bg-body px-10 py-7">
                     <Breadcrumb>

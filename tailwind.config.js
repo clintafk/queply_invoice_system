@@ -22,6 +22,7 @@ export default {
                 "gray-border-2": "#F9F9F9",
                 "gray-border-3": "#CBD5E1",
                 "teal-stop": "#0FCDBA",
+                "form-border": "E4E4E7",
             },
             backgroundColor: {
                 header: "#fff",
